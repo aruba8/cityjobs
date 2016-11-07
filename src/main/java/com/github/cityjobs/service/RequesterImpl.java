@@ -13,8 +13,8 @@ public class RequesterImpl implements Requester {
 
 
     @Override
-    public List<HtmlElement> getJobLinks(String url) {
-        List<HtmlElement> jobLinks = null;
+    public List<HtmlElement> getJobBlocks(String url) {
+        List<HtmlElement> jobBlocks = null;
         try {
 
             final WebClient webClient = new WebClient();
@@ -22,11 +22,11 @@ public class RequesterImpl implements Requester {
             List<?> list = page.getByXPath("//a[text()='View Current Job Postings']");
             HtmlElement a = (HtmlElement) list.get(0);
             HtmlPage jobPage = a.click();
-            jobLinks = (List<HtmlElement>) jobPage.getBody().getByXPath("//a[contains(@id, 'POSTINGLINK')]");
+            jobBlocks = (List<HtmlElement>) jobPage.getBody().getByXPath("//div[div[a[contains(@id, 'POSTINGLINK')]]]");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jobLinks;
+        return jobBlocks;
     }
 }
