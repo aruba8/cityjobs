@@ -7,5 +7,4 @@ import java.util.List;
 public interface JobService {
     void saveJobs(List<Job> jobs);
 
-    int getJobIdFromFullJobName(String fullJobName);
 }

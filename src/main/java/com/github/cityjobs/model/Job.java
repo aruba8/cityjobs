@@ -29,6 +29,9 @@ public class Job implements Serializable{
     @Column(nullable = true, name = "job_id")
     private int jobId;
 
+    @Column(nullable = false, name = "date_added")
+    private Date dateAdded;
+
     public Long getId() {
         return id;
     }
@@ -83,5 +86,13 @@ public class Job implements Serializable{
 
     public void setJobId(int jobId) {
         this.jobId = jobId;
+    }
+
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
     }
 }

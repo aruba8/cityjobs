@@ -22,10 +22,4 @@ public class JobServiceImpl implements JobService {
         jobs.forEach(jobRepository::save);
     }
 
-    @Override
-    public int getJobIdFromFullJobName(String fullJobName) {
-        int nameLength = fullJobName.length();
-        String idString = fullJobName.substring(nameLength-6, nameLength);
-        return Integer.valueOf(idString);
-    }
 }
