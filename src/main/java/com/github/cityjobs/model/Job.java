@@ -3,6 +3,7 @@ package com.github.cityjobs.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Job implements Serializable{
@@ -31,6 +32,18 @@ public class Job implements Serializable{
 
     @Column(nullable = false, name = "date_added")
     private Date dateAdded;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "run_id", nullable = false)
+    private Run run;
+
+    private Run getRun(){
+        return run;
+    }
+
+    public void setRun(Run run) {
+        this.run = run;
+    }
 
     public Long getId() {
         return id;
@@ -95,4 +108,5 @@ public class Job implements Serializable{
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
     }
+
 }

@@ -19,7 +19,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public void saveJobs(List<Job> jobs) {
-        jobs.forEach(jobRepository::save);
+        jobRepository.save(jobs);
     }
 
 }

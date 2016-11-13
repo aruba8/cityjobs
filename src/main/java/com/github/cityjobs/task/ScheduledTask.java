@@ -47,12 +47,16 @@ public class ScheduledTask {
     public void runTask() {
         Run run = new Run();
         run.setTimeStarted(new Date());
+        run = runService.saveRun(run);
         try {
             List<HtmlElement> jobBlocks = requester.getJobBlocks(startPage);
             List<Job> jobs = jobParser.getJobsFromBlock(jobBlocks);
+            for (Job job : jobs) {
+                job.setRun(run);
+            }
             jobService.saveJobs(jobs);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             run.setComment(e.getMessage());
         } finally {
             run.setTimeFinished(new Date());

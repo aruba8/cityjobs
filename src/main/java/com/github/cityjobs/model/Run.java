@@ -3,6 +3,8 @@ package com.github.cityjobs.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Run implements Serializable {
@@ -19,6 +21,16 @@ public class Run implements Serializable {
     @Column(name = "comment", nullable = true)
     private String comment;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "run")
+    private Set<Job> jobs = new HashSet<>();
+
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
+    }
 
     public Long getId() {
         return id;
@@ -51,4 +63,6 @@ public class Run implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+
 }

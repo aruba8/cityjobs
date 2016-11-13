@@ -16,7 +16,7 @@ public class RunServiceImpl implements RunService{
     }
 
     @Override
-    public void saveRun(Run run) {
-        runRepository.save(run);
+    public Run saveRun(Run run) {
+        return runRepository.save(run);
     }
 }
