@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class ScheduledTask {
@@ -44,9 +45,10 @@ public class ScheduledTask {
 
 
     @Scheduled(fixedDelayString = "${spring.schedule.rate}")
-    public void runTask() {
+    public void gatheringJobs() {
         Run run = new Run();
         run.setTimeStarted(new Date());
+        run.setProcessed(false);
         run = runService.saveRun(run);
         try {
             List<HtmlElement> jobBlocks = requester.getJobBlocks(startPage);
@@ -61,6 +63,16 @@ public class ScheduledTask {
         } finally {
             run.setTimeFinished(new Date());
             runService.saveRun(run);
+        }
+    }
+
+    @Scheduled(fixedDelayString = "${spring.schedule.ratejobs}")
+    public void processJobs() {
+        List<Run> runs = runService.findAllByIsProcessedOrderByIdAsc(false);
+        if (runs.size()>1){
+            runs.forEach(a-> System.out.println(a.getId()));
+        } else {
+            Run run = runs.get(0);
         }
     }
 }

@@ -33,7 +33,7 @@ public class Job implements Serializable{
     @Column(nullable = false, name = "date_added")
     private Date dateAdded;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "run_id", nullable = false)
     private Run run;
 

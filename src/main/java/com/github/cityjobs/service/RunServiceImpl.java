@@ -5,8 +5,10 @@ import com.github.cityjobs.repository.RunRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class RunServiceImpl implements RunService{
+public class RunServiceImpl implements RunService {
 
     private final RunRepository runRepository;
 
@@ -19,4 +21,11 @@ public class RunServiceImpl implements RunService{
     public Run saveRun(Run run) {
         return runRepository.save(run);
     }
+
+    @Override
+    public List<Run> findAllByIsProcessedOrderByIdAsc(Boolean isProcessed) {
+        return runRepository.findAllByIsProcessedOrderByIdAsc(isProcessed);
+    }
+
+
 }

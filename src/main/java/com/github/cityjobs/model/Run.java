@@ -21,7 +21,10 @@ public class Run implements Serializable {
     @Column(name = "comment", nullable = true)
     private String comment;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "run")
+    @Column(name = "is_processed", nullable = false)
+    private Boolean isProcessed;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "run")
     private Set<Job> jobs = new HashSet<>();
 
     public Set<Job> getJobs() {
@@ -65,4 +68,11 @@ public class Run implements Serializable {
     }
 
 
+    public Boolean getProcessed() {
+        return isProcessed;
+    }
+
+    public void setProcessed(Boolean processed) {
+        isProcessed = processed;
+    }
 }
