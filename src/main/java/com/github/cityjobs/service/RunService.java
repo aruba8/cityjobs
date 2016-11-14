@@ -8,5 +8,5 @@ import java.util.List;
 public interface RunService {
     Run saveRun(Run run);
 
-    List<Run> findAllByIsProcessedOrderByIdAsc(Boolean isProcessed);
+    List<Run> findAllByIsProcessedOrderByIdAsc(boolean isProcessed);
 }

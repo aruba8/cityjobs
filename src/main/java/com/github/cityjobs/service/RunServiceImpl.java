@@ -23,7 +23,7 @@ public class RunServiceImpl implements RunService {
     }
 
     @Override
-    public List<Run> findAllByIsProcessedOrderByIdAsc(Boolean isProcessed) {
+    public List<Run> findAllByIsProcessedOrderByIdAsc(boolean isProcessed) {
         return runRepository.findAllByIsProcessedOrderByIdAsc(isProcessed);
     }
 

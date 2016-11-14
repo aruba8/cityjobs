@@ -8,5 +8,5 @@ import java.util.List;
 public interface RunRepository extends Repository<Run, Long> {
     Run save(Run run);
 
-    List<Run> findAllByIsProcessedOrderByIdAsc(Boolean isProcessed);
+    List<Run> findAllByIsProcessedOrderByIdAsc(boolean isProcessed);
 }

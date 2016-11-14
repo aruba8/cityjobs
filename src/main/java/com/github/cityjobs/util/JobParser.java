@@ -21,7 +21,7 @@ public class JobParser {
         return jobList;
     }
 
-    public Job getJobFromBlock(HtmlElement block) {
+    private Job getJobFromBlock(HtmlElement block) {
         HtmlElement link = (HtmlElement) block.getByXPath(".//a").get(0);
         HtmlElement span = (HtmlElement) block.getByXPath(".//span").get(0);
         String spanText = span.getTextContent();
